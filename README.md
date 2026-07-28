@@ -41,163 +41,356 @@ This project demonstrates how CRC generates a checksum, appends it to the origin
 - ✅ Simulates bit errors
 - ✅ Detects transmission errors
 - ✅ Displays verification result
+# CRC Simulator
 
----
-                                  # 🏗 Code Logic Diagram
-                                                   
-                           +--------------------------------+
-                           |            CRC.java            |
-                           +--------------------------------+
-                                        |
-                                        |
-                                        ▼
-                           +-----------------------------+
-                           |         main()              |
-                           +-----------------------------+
-                           | • Read binary data          |
-                           | • Read generator polynomial |
-                           | • Call CRC generation       |
-                           | • Simulate transmission     |
-                           | • Verify received data      |
-                           +-------------+---------------+
-                                         |
-                    +--------------------+---------------------+
-                    |                                          |
-                    ▼                                          ▼
-        +---------------------------+             +---------------------------+
-        |      mod2div()            |             |   Simulate Bit Error      |
-        +---------------------------+             +---------------------------+
-        | Performs Mod-2 Division   |             | Flip selected bit (0 ↔ 1) |
-        | Calculates CRC remainder  |             | Return corrupted data     |
-        +-------------+-------------+             +-------------+-------------+
-                      |                                           |
-                      ▼                                           |
-        +---------------------------+                             |
-        |         xor()             |                             |
-        +---------------------------+                             |
-        | Performs XOR operation    |                             |
-        | between dividend/divisor  |                             |
-        +-------------+-------------+                             |
-                      |                                           |
-                      +-------------------+-----------------------+
-                                          |
-                                          ▼
-                           +-----------------------------+
-                           | Generate Codeword           |
-                           | data + CRC remainder        |
-                           +-------------+---------------+
-                                         |
-                                         ▼
-                           +-----------------------------+
-                           | Verify Received Data        |
-                           | Call mod2div() again        |
-                           +-------------+---------------+
-                                         |
-                                         ▼
-                           +-----------------------------+
-                           | Is remainder all zeros?     |
-                           +-------------+---------------+
-                                         |
-                          +--------------+--------------+
-                          |                             |
-                          ▼                             ▼
-                +--------------------+       +----------------------+
-                |    Data Correct    |       |   Error Detected     |
-                +--------------------+       +----------------------+
-```
-
-
-```
+A Java-based CRC (Cyclic Redundancy Check) simulator project.
 
 ---
 
-## 🧮 Example
+# Team Development Setup Guide
 
-```
-Original Data        : 1101011011
-Generator Polynomial : 10011
+This guide explains how to set up the project locally and contribute using Git branches.
 
-↓
+## Prerequisites
 
-Append 4 Zeros
+Before starting, make sure you have:
 
-11010110110000
+- Git installed
+- IntelliJ IDEA/vscode/eclipse installed
+- GitHub account with repository access
 
-↓
-
-CRC = 1110
-
-↓
-
-Final Codeword
-
-11010110111110
-```
-
----
-
-## 💻 Example Output
-
-```text
-Enter Data:
-1101011011
-
-Enter Generator Polynomial:
-10011
-
-CRC = 1110
-
-Codeword = 11010110111110
-
-Create Bit Error? (Y/N): Y
-
-Bit Position: 5
-
-Corrupted Data = 11010010111110
-
-Result:
-Error Detected.
-```
-
----
-
-## 🛠 Technologies
-
-- Java
-- Scanner
-- XOR Operation
-- Mod-2 Binary Division
-- Object-Oriented Programming
-
----
-
-## 🚀 How to Run
+Check Git installation:
 
 ```bash
-javac CRC.java
-java CRC
+git --version
 ```
-
- 
-## 📚 Learning Outcomes
-
-This project demonstrates:
-
-- CRC Error Detection
-- Binary Arithmetic
-- XOR Operations
-- Polynomial Division
-- Error Detection in Computer Networks
-- Java Console Programming
 
 ---
 
-<div align="center">
+# 1. Clone the Repository
 
-### ⭐ Computer Networks Project
+Open your terminal (IntelliJ Terminal, CMD, or PowerShell).
 
-**CRC (Cyclic Redundancy Check) Implementation in Java**
+Clone the repository:
 
-Developed as a collaborative university project.
+```bash
+git clone https://github.com/Bash77/CRC-simulator.git
+```
 
-</div>
+Move into the project folder:
+
+```bash
+cd CRC-simulator
+```
+
+---
+
+# 2. Download the Latest Development Version
+
+The team works on the `develop` branch.
+
+Switch to the develop branch:
+
+```bash
+git checkout develop
+```
+
+Download the latest changes:
+
+```bash
+git pull origin develop
+```
+
+Now your local project contains the latest team version.
+
+---
+
+# 3. Open the Project in IntelliJ IDEA
+
+1. Open IntelliJ IDEA.
+2. Select:
+
+```
+File → Open
+```
+
+3. Choose:
+
+```
+CRC-simulator
+```
+
+4. Wait until IntelliJ finishes loading and indexing the project.
+
+The project structure should look like:
+
+```
+CRC-simulator
+│
+├── src
+│   └── crcsimulator
+│       ├── Main.java
+│       └── CRCAlgorithm.java
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+# 4. Understand the Project Structure
+
+The project contains:
+
+```
+crcsimulator
+│
+├── Main.java
+│
+└── CRCAlgorithm.java
+```
+
+### Main.java
+
+The entry point of the application.
+
+Responsibilities:
+
+- Start the program
+- Call CRC methods
+- Display results
+
+---
+
+### CRCAlgorithm.java
+
+Contains the CRC implementation methods.
+
+Each team member will implement their assigned method inside this class.
+
+Example:
+
+```java
+public class CRCAlgorithm {
+
+    public static String calculateCRC(String data, String generator) {
+        // implementation
+    }
+
+    public static boolean validateInput(String input) {
+        // implementation
+    }
+
+}
+```
+
+---
+
+# 5. Create Your Feature Branch
+
+Do not write code directly on `main` or `develop`.
+
+Each member must create their own feature branch.
+
+First make sure you are on develop:
+
+```bash
+git checkout develop
+```
+
+Update your branch:
+
+```bash
+git pull origin develop
+```
+
+Create your feature branch:
+
+```bash
+git checkout -b feature/task-name
+```
+
+---
+
+## Branch Examples
+
+### CRC Algorithm
+
+```bash
+git checkout -b feature/crc-algorithm
+```
+
+### Input Validation
+
+```bash
+git checkout -b feature/input-validation
+```
+
+### XOR Division
+
+```bash
+git checkout -b feature/xor-division
+```
+
+### Error Detection
+
+```bash
+git checkout -b feature/error-detection
+```
+
+---
+
+# 6. Implement Your Assigned Task
+
+Each member should:
+
+1. Work only on their assigned method.
+2. Avoid changing other team members' code.
+3. Test their implementation before pushing.
+
+Example:
+
+```
+CRCAlgorithm.java
+
+calculateCRC()
+        |
+        |
+    Bashir's task
+
+
+validateInput()
+        |
+        |
+    Namu's task
+```
+
+---
+
+# 7. Save Your Changes
+
+Check your changes:
+
+```bash
+git status
+```
+
+Add files:
+
+```bash
+git add .
+```
+
+Create a commit:
+
+```bash
+git commit -m "Implement CRC calculation method"
+```
+
+---
+
+# 8. Push Your Feature Branch
+
+Push your branch to GitHub:
+
+```bash
+git push origin feature/task-name
+```
+
+Example:
+
+```bash
+git push origin feature/crc-algorithm
+```
+
+---
+
+# 9. Create a Pull Request
+
+After pushing:
+
+1. Open GitHub repository.
+2. Go to **Pull Requests**.
+3. Click **New Pull Request**.
+4. Select:
+
+```
+base branch: develop
+compare branch: feature/your-task
+```
+
+5. Add a description.
+6. Submit the Pull Request.
+
+The team leader will review and merge it.
+
+---
+
+# 10. Update Your Project Before Starting New Work
+
+Always update your local project:
+
+```bash
+git checkout develop
+```
+
+Pull the newest changes:
+
+```bash
+git pull origin develop
+```
+
+Create a new feature branch:
+
+```bash
+git checkout -b feature/new-task
+```
+
+---
+
+# Team Git Workflow
+
+```
+                 main
+                  |
+                  |
+              develop
+                  |
+        -------------------
+        |        |        |
+        |        |        |
+ feature/crc  feature/input  feature/testing
+        |        |        |
+        -------------------
+                  |
+            Pull Request
+                  |
+              develop
+```
+
+---
+
+# Contribution Rules
+
+- Never push directly to `main`.
+- Never push directly to `develop`.
+- Always use a `feature/` branch.
+- Keep commits clear and descriptive.
+- Test your code before creating a Pull Request.
+- Communicate with the team before modifying shared code.
+
+---
+
+# Team Tasks
+
+| Member | Task | Branch |
+|--------|------|--------|
+| Bashir | CRC Algorithm Implementation | `feature/crc-algorithm` |
+| Namu | Input Validation | `feature/input-validation` |
+| Husein | XOR Division / Helper Methods | `feature/xor-division` |
+| Cevahir | Error Detection and Testing | `feature/error-detection` |
+| Ali | Documentation and Project Support | `feature/documentation` |
+
+---
+
+Following this workflow keeps the project organized and allows everyone to work together safely.

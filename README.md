@@ -10,7 +10,7 @@ CRC, veri iletiminde hata kontrolü yapmak için kullanılır. Gönderen ve alan
 
 ```text
 Veri:      11011
-Generator: 1001
+Generator: 1111
 ```
 
 Generator 4 bit olduğu için verinin sonuna 3 sıfır eklenir:
@@ -66,9 +66,9 @@ Ekstra kurulum veya veritabanı gerekmez. HTML ve JavaScript ile çalıştığı
 
 ```text
 Veri: 1101011011
-Generator: 1001
-CRC: 100
-Gönderilen Veri: 1101011011100
+Generator: 1111
+CRC: 001
+Gönderilen Veri: 1101011011001
 Sonuç: Veri doğru
 ```
 

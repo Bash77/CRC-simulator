@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRC Projesi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+    <main class="mx-auto mt-10 max-w-xl rounded bg-white p-6 shadow">
+      <h1 class="mb-6 text-center text-2xl font-bold">CRC Projesi</h1>
+
+      <label class="mb-1 block font-medium" for="dataInput">Veri</label>
+      <input id="dataInput" class="mb-4 w-full rounded border p-2 font-mono" value="1101011011" />
+
+      <label class="mb-1 block font-medium" for="generatorInput">Generator</label>
+      <input id="generatorInput" class="mb-4 w-full rounded border p-2 font-mono" value="1001" />
+
+      <div class="mb-4 flex gap-2 justify-between">
+        <button id="calculateButton" class="rounded bg-blue-600 px-4 py-2 text-white">CRC Hesapla</button>
+
+        <button id="verifyButton" class="rounded bg-gray-600 px-4 py-2 text-white">Doğrula</button>
+      </div>
+
+      <label class="mb-1 block font-medium" for="receivedInput">Gönderilen / Kontrol Edilecek Veri</label>
+      <p class="mb-1 text-sm text-gray-600">Bu değer: veri + CRC. İstersen manuel değiştirip doğrulayabilirsin.</p>
+      <input id="receivedInput" class="mb-4 w-full rounded border p-2 font-mono" />
+
+      <div class="space-y-2 rounded bg-gray-50 p-4">
+        <p><strong>CRC:</strong> <span id="crcOutput">-</span></p>
+        <p><strong>Gönderilen Veri:</strong> <span id="sentOutput">-</span></p>
+        <p><strong>Kalan:</strong> <span id="remainderOutput">-</span></p>
+        <p><strong>Sonuç:</strong> <span id="resultOutput">-</span></p>
+      </div>
+
+      <h2 class="mb-2 mt-4 font-bold">İşlem Adımları</h2>
+      <pre id="stepsOutput" class="overflow-auto rounded bg-gray-900 p-4 text-center text-sm text-white">-</pre>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

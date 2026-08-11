@@ -175,12 +175,26 @@ function showSteps(text, generator) {
   stepsOutput.innerHTML = `<span class="inline-block text-left">${renderedLines}</span>`;
 }
 
+function showResult(status, detail = "", type = "normal") {
+  const colors = {
+    error: "text-red-600",
+    success: "text-green-700",
+    normal: "text-gray-700",
+  };
+
+  const detailHtml = detail
+    ? ` <span class="text-gray-500">(${escapeHtml(detail)})</span>`
+    : "";
+
+  resultOutput.innerHTML = `<span class="${colors[type]}">${escapeHtml(status)}</span>${detailHtml}`;
+}
+
 function calculate() {
   const data = clean(dataInput.value);
   const generator = clean(generatorInput.value);
 
   if (!isValidBinary(data) || !isValidBinary(generator)) {
-    resultOutput.textContent = "Sadece 0 ve 1 giriniz.";
+    showResult("Sadece 0 ve 1 giriniz.", "", "error");
     return;
   }
 
@@ -192,7 +206,7 @@ function calculate() {
   sentOutput.textContent = `${data} + ${crc} = ${sentData}`;
   receivedInput.value = sentData;
   remainderOutput.textContent = "-";
-  resultOutput.textContent = "CRC hesaplandı.";
+  showResult("CRC hesaplandı.");
   showSteps(getDivisionSteps(dataWithZeros, generator), generator);
 }
 
@@ -202,7 +216,7 @@ function verify() {
   const generator = clean(generatorInput.value);
 
   if (!isValidBinary(data) || !isValidBinary(receivedData) || !isValidBinary(generator)) {
-    resultOutput.textContent = "Sadece 0 ve 1 giriniz.";
+    showResult("Sadece 0 ve 1 giriniz.", "", "error");
     return;
   }
 
@@ -213,7 +227,7 @@ function verify() {
     const result = verifyCRC(receivedData, generator);
 
     remainderOutput.textContent = result.remainder;
-    resultOutput.textContent = `Hata tespit edildi (beklenen uzunluk: ${expectedLength}, gelen uzunluk: ${receivedData.length})`;
+    showResult("Hata tespit edildi", `beklenen uzunluk: ${expectedLength}, gelen uzunluk: ${receivedData.length}`, "error");
     showSteps(getDivisionSteps(receivedData, generator), generator);
     return;
   }
@@ -222,7 +236,7 @@ function verify() {
 
   sentOutput.textContent = `Kontrol edilen veri: ${receivedData}`;
   remainderOutput.textContent = result.remainder;
-  resultOutput.textContent = result.hasError ? "Hata tespit edildi" : "Veri doğru";
+  showResult(result.hasError ? "Hata tespit edildi" : "Veri doğru", "", result.hasError ? "error" : "success");
   showSteps(getDivisionSteps(receivedData, generator), generator);
 }
 
@@ -230,7 +244,7 @@ document.querySelector("#calculateButton").addEventListener("click", calculate);
 document.querySelector("#verifyButton").addEventListener("click", verify);
 receivedInput.addEventListener("input", () => {
   remainderOutput.textContent = "-";
-  resultOutput.textContent = "Kontrol etmek için Doğrula butonuna bas.";
+  showResult("Kontrol etmek için Doğrula butonuna bas.");
 });
 
 calculate();

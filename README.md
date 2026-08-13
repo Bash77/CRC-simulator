@@ -1,6 +1,6 @@
 # CRC Projesi
 
-Bu proje, kullanıcıdan alınan binary veri için CRC (Cyclic Redundancy Check) kodu oluşturur. Daha sonra bu veri doğrulanır ve iletim sırasında hata oluşup oluşmadığı kontrol edilir.
+Bu proje, binary verinin CRC kodunu hesaplar ve veride hata olup olmadığını kontrol eder.
 
 Proje HTML, Tailwind ve JavaScript ile hazırlanmıştır. Arayüz olduğu için CRC hesaplama, gönderilen veri, kalan değer ve hata tespiti adımları öğretmene daha kolay gösterilebilir.
 

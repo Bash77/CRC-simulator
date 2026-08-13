@@ -17,6 +17,10 @@ function isValidBinary(value) {
   return /^[01]+$/.test(value);
 }
 
+function isValidGenerator(generator) {
+  return isValidBinary(generator) && generator.length >= 2;
+}
+
 function xor(firstBit, secondBit) {
   return firstBit === secondBit ? "0" : "1";
 }
@@ -198,6 +202,11 @@ function calculate() {
     return;
   }
 
+  if (!isValidGenerator(generator)) {
+    showResult("Generator en az 2 bit olmalıdır.", "", "error");
+    return;
+  }
+
   const crc = calculateCRC(data, generator);
   const sentData = data + crc;
   const dataWithZeros = data + "0".repeat(generator.length - 1);
@@ -217,6 +226,11 @@ function verify() {
 
   if (!isValidBinary(data) || !isValidBinary(receivedData) || !isValidBinary(generator)) {
     showResult("Sadece 0 ve 1 giriniz.", "", "error");
+    return;
+  }
+
+  if (!isValidGenerator(generator)) {
+    showResult("Generator en az 2 bit olmalıdır.", "", "error");
     return;
   }
 

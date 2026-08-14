@@ -4,6 +4,12 @@ Bu proje, binary verinin CRC kodunu hesaplar ve veride hata olup olmadığını 
 
 Proje HTML, Tailwind ve JavaScript ile hazırlanmıştır. Arayüz olduğu için CRC hesaplama, gönderilen veri, kalan değer ve hata tespiti adımları öğretmene daha kolay gösterilebilir.
 
+## Dosyalar
+
+- `index.html`: Basit arayüz
+- `src/crc.js`: CRC hesaplama ve doğrulama fonksiyonları <---`proje kodu`
+- `src/app.js`: Butonlar ve ekrana sonuç yazdırma işlemleri
+
 ## Nasıl Çalışır?
 
 CRC, veri iletiminde hata kontrolü yapmak için kullanılır. Gönderen ve alan taraf aynı generator değerini kullanır.
@@ -38,11 +44,6 @@ Bu veri generator ile XOR bölmesine sokulur. Kalan değer CRC kodudur ve verini
 - Veriyi manuel değiştirip hata kontrolü yapma
 - Hata varsa `Hata tespit edildi`, yoksa `Veri doğru` mesajını gösterme
 
-## Dosyalar
-
-- `index.html`: Basit arayüz
-- `src/crc.js`: CRC hesaplama ve doğrulama fonksiyonları
-- `src/app.js`: Butonlar ve ekrana sonuç yazdırma işlemleri
 
 ## Çalıştırma
 
@@ -78,6 +79,6 @@ Yapay hata oluşturulursa sonuç:
 Hata tespit edildi
 ```
 
-## Sunum Cümlesi
+## Ozeti/Summary
 
 Bu projede CRC algoritması JavaScript ile uygulanmıştır. Kullanıcıdan binary veri ve generator alınır. CRC kodu hesaplanır, verinin sonuna eklenir ve alınan veri aynı generator ile doğrulanır. Kalan sıfırsa veri doğru kabul edilir, sıfır değilse hata tespit edilir.

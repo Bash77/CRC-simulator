@@ -5,11 +5,11 @@ Bu proje, binary verinin CRC kodunu hesaplar ve veride hata olup olmadığını 
 Proje HTML, Tailwind ve JavaScript ile hazırlanmıştır. Arayüz olduğu için CRC hesaplama, gönderilen veri, kalan değer ve hata tespiti adımları öğretmene daha kolay gösterilebilir.
 
 Katilimciler
-Abdulqayum Abdow Hussein 
-Namu Makwembo
-Bashir Mohamed Ali 
-Javokhir Kobilov
-Aibar sailaubayev
+- Abdulqayum Abdow Hussein 
+- Namu Makwembo
+- Bashir Mohamed Ali 
+- Javokhir Kobilov
+- Aibar sailaubayev
 
 ## Dosyalar
 

@@ -193,16 +193,29 @@ function showResult(status, detail = "", type = "normal") {
   resultOutput.innerHTML = `<span class="${colors[type]}">${escapeHtml(status)}</span>${detailHtml}`;
 }
 
+function clearOutputs(clearReceivedData = false) {
+  crcOutput.textContent = "-";
+  sentOutput.textContent = "-";
+  remainderOutput.textContent = "-";
+  stepsOutput.textContent = "-";
+
+  if (clearReceivedData) {
+    receivedInput.value = "";
+  }
+}
+
 function calculate() {
   const data = clean(dataInput.value);
   const generator = clean(generatorInput.value);
 
   if (!isValidBinary(data) || !isValidBinary(generator)) {
+    clearOutputs(true);
     showResult("Sadece 0 ve 1 giriniz.", "", "error");
     return;
   }
 
   if (!isValidGenerator(generator)) {
+    clearOutputs(true);
     showResult("Generator en az 2 bit olmalıdır.", "", "error");
     return;
   }
@@ -225,11 +238,13 @@ function verify() {
   const generator = clean(generatorInput.value);
 
   if (!isValidBinary(data) || !isValidBinary(receivedData) || !isValidBinary(generator)) {
+    clearOutputs();
     showResult("Sadece 0 ve 1 giriniz.", "", "error");
     return;
   }
 
   if (!isValidGenerator(generator)) {
+    clearOutputs();
     showResult("Generator en az 2 bit olmalıdır.", "", "error");
     return;
   }
@@ -256,6 +271,14 @@ function verify() {
 
 document.querySelector("#calculateButton").addEventListener("click", calculate);
 document.querySelector("#verifyButton").addEventListener("click", verify);
+generatorInput.addEventListener("input", () => {
+  const generator = clean(generatorInput.value);
+
+  if (generator !== "" && isValidBinary(generator) && generator.length < 2) {
+    clearOutputs(true);
+    showResult("Generator en az 2 bit olmalıdır.", "", "error");
+  }
+});
 receivedInput.addEventListener("input", () => {
   remainderOutput.textContent = "-";
   showResult("Kontrol etmek için Doğrula butonuna bas.");

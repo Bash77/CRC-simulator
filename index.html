@@ -10,7 +10,10 @@
     <main class="mx-auto mt-10 max-w-xl rounded bg-white p-6 shadow">
       <h1 class="mb-6 text-center text-2xl font-bold">CRC Projesi</h1>
 
-      <label class="mb-1 block font-medium" for="dataInput">Veri</label>
+      <div class="mb-1 flex items-center justify-between">
+        <label class="font-medium" for="dataInput">Veri</label>
+        <button id="randomDataButton" class="rounded bg-emerald-600 px-2 py-1 text-xs text-white">Rastgele Veri</button>
+      </div>
       <input id="dataInput" class="mb-4 w-full rounded border p-2 font-mono" value="1101011011" />
 
       <label class="mb-1 block font-medium" for="generatorInput">Generator</label>

@@ -232,6 +232,16 @@ function calculate() {
   showSteps(getDivisionSteps(dataWithZeros, generator), generator);
 }
 
+function generateRandomData() {
+  const length = 8 + Math.floor(Math.random() * 5);
+  const bits = Array.from({ length }, (_, index) =>
+    index === 0 ? "1" : Math.random() < 0.5 ? "0" : "1"
+  );
+
+  dataInput.value = bits.join("");
+  calculate();
+}
+
 function injectError() {
   const data = clean(dataInput.value);
   const generator = clean(generatorInput.value);
@@ -302,6 +312,7 @@ function verify() {
 document.querySelector("#calculateButton").addEventListener("click", calculate);
 document.querySelector("#verifyButton").addEventListener("click", verify);
 document.querySelector("#injectErrorButton").addEventListener("click", injectError);
+document.querySelector("#randomDataButton").addEventListener("click", generateRandomData);
 generatorInput.addEventListener("input", () => {
   const generator = clean(generatorInput.value);
 

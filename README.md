@@ -44,6 +44,7 @@ Bu veri generator ile XOR bölmesine sokulur. Kalan değer CRC kodudur ve verini
 ## Özellikler
 
 - Kullanıcıdan binary veri alma
+- Rastgele veri üretme: tek tuşla rastgele binary veri oluşturulup CRC otomatik hesaplanır
 - Generator değeri alma
 - CRC kodunu hesaplama
 - CRC kodunu verinin sonuna ekleme

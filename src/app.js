@@ -232,6 +232,36 @@ function calculate() {
   showSteps(getDivisionSteps(dataWithZeros, generator), generator);
 }
 
+function injectError() {
+  const data = clean(dataInput.value);
+  const generator = clean(generatorInput.value);
+
+  if (!isValidBinary(data) || !isValidBinary(generator)) {
+    clearOutputs(true);
+    showResult("Sadece 0 ve 1 giriniz.", "", "error");
+    return;
+  }
+
+  if (!isValidGenerator(generator)) {
+    clearOutputs(true);
+    showResult("Generator en az 2 bit olmalıdır.", "", "error");
+    return;
+  }
+
+  const crc = calculateCRC(data, generator);
+  const sentData = data + crc;
+  const position = Math.floor(Math.random() * sentData.length);
+  const flipped = sentData[position] === "1" ? "0" : "1";
+  const corruptedData = sentData.slice(0, position) + flipped + sentData.slice(position + 1);
+
+  crcOutput.textContent = crc;
+  sentOutput.textContent = `${data} + ${crc} = ${sentData}`;
+  receivedInput.value = corruptedData;
+  remainderOutput.textContent = "-";
+  showResult("Hata simüle edildi", `${position + 1}. bit değiştirildi, doğrulamak için Doğrula'ya bas.`, "error");
+  showSteps(getDivisionSteps(data + "0".repeat(generator.length - 1), generator), generator);
+}
+
 function verify() {
   const data = clean(dataInput.value);
   const receivedData = clean(receivedInput.value);
@@ -271,6 +301,7 @@ function verify() {
 
 document.querySelector("#calculateButton").addEventListener("click", calculate);
 document.querySelector("#verifyButton").addEventListener("click", verify);
+document.querySelector("#injectErrorButton").addEventListener("click", injectError);
 generatorInput.addEventListener("input", () => {
   const generator = clean(generatorInput.value);
 

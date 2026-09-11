@@ -49,6 +49,7 @@ Bu veri generator ile XOR bölmesine sokulur. Kalan değer CRC kodudur ve verini
 - CRC kodunu verinin sonuna ekleme
 - Veriyi doğrulama
 - Veriyi manuel değiştirip hata kontrolü yapma
+- Hata simülasyonu: tek tuşla rastgele bir bit değiştirilir ve hata tespiti test edilebilir
 - Hata varsa `Hata tespit edildi`, yoksa `Veri doğru` mesajını gösterme
 
 
